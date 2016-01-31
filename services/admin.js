@@ -23,7 +23,7 @@ admin.execute = function(msg,cb){
     }
 
     request(options, function (e, r) {
-        console.log(e, r);
+        console.log(e, r.body);
         cb(e,r);
     });
     //cb(null,'world');
