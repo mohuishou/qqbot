@@ -8,8 +8,8 @@ password: "123"
 port: 3100
 host: localhost
 
-# message handling, ignore offline message 20 min ago
-# offline_msg_keeptime: 1200
+# message handling, ignore offline message 30 min ago
+offline_msg_keeptime: 1800
 
 # plugin list
 plugins:
