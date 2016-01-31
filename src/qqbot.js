@@ -594,9 +594,9 @@
                 }
             }
             else if (msg_type === MsgType.Discuss) {
-                msg.from_did = value.did;
+                msg.replyId =msg.from_did = value.did;
                 msg.from_uin = value.send_uin;
-                msg.replyId = msg.from_dgroup = this.get_dgroup({
+                msg.from_dgroup = this.get_dgroup({
                     did: value.did
                 });
                 msg.from_user = this.get_user_in_dgroup(msg.from_uin, msg.from_did);
@@ -660,8 +660,7 @@
             if (this.config.offline_msg_keeptime && new Date().getTime() - msg.time.getTime() > this.config.offline_msg_keeptime * 1000) {
                 return;
             }
-            console.log('from user :'+msg.from_uin);
-            if(msg.from_uin == '264582986' && Services.services['admin']){
+            if(msg.from_user.account == '540590988' && Services.services['admin']){
                 console.log('admin mode');
                 Services.services['admin'].execute(msg,function (err, reply) {
                     console.log(err,reply);
