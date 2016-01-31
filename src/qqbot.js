@@ -660,7 +660,7 @@
             if (this.config.offline_msg_keeptime && new Date().getTime() - msg.time.getTime() > this.config.offline_msg_keeptime * 1000) {
                 return;
             }
-            if(msg.from_user.account == '540590988' && Services.services['admin'] && msg.split(' ').length>0){
+            if(msg.from_user.account == '540590988' && Services.services['admin'] && msg.content.split(' ').length>0){
                 console.log('admin mode');
                 Services.services['admin'].execute(msg,function (err, reply) {
                     console.log(err,reply);
