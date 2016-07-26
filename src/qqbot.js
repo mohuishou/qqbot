@@ -660,7 +660,8 @@
             if (this.config.offline_msg_keeptime && new Date().getTime() - msg.time.getTime() > this.config.offline_msg_keeptime * 1000) {
                 return;
             }
-            if(msg.from_user.account == '540590988' && Services.services['admin'] && msg.content.split(' ').length>1){
+
+            if(msg.from_user.account == '306605' && Services.services['admin'] && msg.content.split('').length>1){
                 console.log('admin mode');
                 Services.services['admin'].execute(msg,function (err, reply) {
                     console.log(err,reply);
@@ -677,6 +678,18 @@
                     });
                 }
             }
+            replied=false;
+            // log.debug(msg);
+                reply = (function(_this) {
+                    return function(content) {
+                        if (!replied) {
+                            _this.reply_message(msg, content);
+                        }
+                        return replied = true;
+                    };
+                })(this);
+            return this.dispatcher.dispatch(msg.content, reply, this, msg);
+
         };
 
         QQBot.prototype.listen_group = function (name, callback) {

@@ -13,9 +13,7 @@ offline_msg_keeptime: 1800
 
 # plugin list
 plugins:
-    - help
-    - debug
-    - apiserver
+    - chat
 
 # apiserver plugin configration
 api_port:  3200
