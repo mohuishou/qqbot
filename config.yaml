@@ -14,6 +14,7 @@ offline_msg_keeptime: 1800
 # plugin list
 plugins:
     - chat
+admin_accout: 306755605
 
 # apiserver plugin configration
 api_port:  3200

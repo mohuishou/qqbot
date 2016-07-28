@@ -64,10 +64,17 @@
         QQBot.prototype.get_user_ingroup = function (uin, gid) {
             var info, users;
             info = this.groupmember_info[gid];
-            users = info.minfo.filter(function (item) {
-                return item.uin === uin;
-            });
-            return users.pop();
+            if(!info){
+                log.debug("不存在info："+info);
+                this.runloop();
+            }else{
+                users = info.minfo.filter(function (item) {
+                    return item.uin === uin;
+                });
+                return users.pop();
+            }
+
+
         };
 
         QQBot.prototype.get_group = function (options) {
