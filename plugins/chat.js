@@ -63,6 +63,7 @@
     chat.turing=function (content,message,send) {
         param.info=content;
         param.userid=message.from_uin;
+        param.loc="成都市";
         request.post({url:apiUrl,body: JSON.stringify(param)},function (e,r,b) {
             if(e){
                 return e;
@@ -183,6 +184,7 @@
                     users[message.group_code] = {};
                     users[message.group_code].check_on = 0;
                     users[message.group_code].msg_numbers = 0;
+                    chat.group_reset(users[message.group_code],60*1000);//每分钟清零
                 }
                 if(message.from_user.nick == '莫，回首'){
                     if (users[message.group_code].check_on != 1 ) {
@@ -226,7 +228,7 @@
 
                 chat.turing(content,message,send);
                 users[message.group_code].msg_numbers+=1;
-                chat.group_reset(users[message.group_code],60*1000);//每分钟清零
+
 
             }
         }

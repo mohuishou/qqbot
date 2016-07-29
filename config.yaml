@@ -14,6 +14,9 @@ offline_msg_keeptime: 1800
 # plugin list
 plugins:
     - chat
+    - groupmanager
+    - help
+
 admin_accout: 306755605
 
 # apiserver plugin configration
