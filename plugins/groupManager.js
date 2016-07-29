@@ -10,13 +10,19 @@
             {
                 code: "521955012",//群号
                 admin: "306755605"//该群管理员账号
+            },
+            {
+                code:"555067271",
+                admin:"306755605"
             }
         ],
         say_time: 10 * 1000,//间隔时间
-        max_number: 2,//发言条数
+        max_number: 10,//发言条数
     }
+
     var Log = require('log');
     var log = new Log('debug');
+
     // 定义一个判断函数
     var in_array = function (str, arr) {
         // 遍历是否在数组中
@@ -31,6 +37,7 @@
 
 
     var group_fun = {};
+
     group_fun.msg_reset = function (group, time) {
         setInterval(function () {
             for (var i = 0; i < group.members.length; i++) {
@@ -78,12 +85,14 @@
             if (member.msg_numbers > group_config.max_number) {
                 member.notice += 1;
                 send("@" + member.nick + " 你10秒内发送消息数目超限，警告一次！\n 现已警告：" + member.notice + "次 \n 注：一天内警告次数大于等于两次，将会通知管理员将你禁言，大与5次将直接请你离开 \n 谢谢合作！");
-                if(member.notice>1){
-                    robot.get_user_uin(admin_count,function (e,uin) {
-                        robot.send_message(uin, "用户：" + member.nick + " 在群：" + message.from_group.name + " 中警告次数达到"+member.notice+"次，请将此人禁言 \n 注：群号"+message.from_group.account, function () { });
-                    });
-                }
                 member.msg_numbers = 0;
+                if(member.notice>1){
+                        robot.get_user_uin(admin_count,function (e,uin) {
+                            robot.send_message(uin, "用户：" + member.nick + " 在群：" + message.from_group.name + " 中警告次数达到"+member.notice+"次，请将此人禁言 \n 注：群号"+message.from_group.account, function () { });
+                        });
+
+                }
+
 
             }
 

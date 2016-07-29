@@ -686,7 +686,7 @@
                 }
             }
             replied=false;
-            // log.debug(msg);
+            log.debug(msg);
                 reply = (function(_this) {
                     return function(content) {
                         if (!replied) {
