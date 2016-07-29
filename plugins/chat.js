@@ -134,6 +134,12 @@
             }
         },time);
     }
+    
+    chat.robot_sleep=function (users_group,time) {
+        setTimeout(function () {
+            users_group.check_on=1;
+        },time)
+    }
 
     module.exports = function(content, send, robot, message) {
         content=content.trim();
@@ -221,8 +227,9 @@
 
                 //检测机器人是否刷屏
                 if(users[message.group_code].msg_numbers>10){
-                    send("1分钟内说了太多话机器人有些累了，已退出智能聊天模式");
+                    send("1分钟内说了太多话机器人有些累了，让它休息5分钟吧");
                     users[message.group_code].check_on=0;//退出智能聊天
+                    chat.robot_sleep([message.group_code],5*60*1000);
                     return;
                 }
 
