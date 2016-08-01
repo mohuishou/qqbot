@@ -17,7 +17,7 @@
             }
         ],
         say_time: 10 * 1000,//间隔时间
-        max_number: 10,//发言条数
+        max_number: 15,//发言条数
     }
 
     var Log = require('log');

@@ -34,7 +34,7 @@
 
     chat.config={
         group:{
-            sleep_time:5, //机器人休息间隔，默认5分钟
+            sleep_time:2, //机器人休息间隔，默认5分钟
             say_numbers:4, //一分钟内机器人的发言条数限制
             say_space:5, //几分钟内机器人无回复，自动退出
             clear_time:1, //发送消息数目定时清零时间，默认1分钟
@@ -166,12 +166,12 @@
      * @param users_group
      * @param time
      */
-    chat.robot_sleep=function (users_group,send,time) {
+    chat.robot_sleep=function (users_group,qqbot,time) {
         setTimeout(function () {
             users_group.check_on=1;
 
             //提示机器人已复活
-            send('我已经休息好啦，不过不要让我再去休息哦！');
+            chat.send_group(qqbot,users_group.accout,'我已经休息好啦，不过不要让我再去休息哦！');
 
             //从休眠中恢复之后last重置
             users_group.last=date.getTime();
@@ -228,7 +228,7 @@
 
                 if (!users[message.group_code]) {
                     users[message.group_code] = {};
-                    users[message.group_code].code = message.group_code;
+                    users[message.group_code].accout = message.from_group.account;
                     users[message.group_code].check_on = 0;
                     users[message.group_code].msg_numbers = 0;
                     // chat.send_group(robot,message.from_group.account,date.getHours()+date.getMinutes());
@@ -272,7 +272,7 @@
                 if(users[message.group_code].msg_numbers>config.say_numbers){
                     send("1分钟内说了太多话机器人有些累了，让它休息"+config.sleep_time+"分钟吧");
                     users[message.group_code].check_on=0;//退出智能聊天
-                    chat.robot_sleep(users[message.group_code],send,config.sleep_time*60*1000);
+                    chat.robot_sleep(users[message.group_code],robot,config.sleep_time*60*1000);
                     return;
                 }
                 users[message.group_code].msg_numbers+=1;
