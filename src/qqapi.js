@@ -6,7 +6,7 @@
  */
 
 (function() {
-  var all_cookies, change_status, client, cookies, fs, get_buddy_list, get_discuss_list, get_discuss_member, get_friend_uin2, get_group_list, get_group_member, jsons, log, long_poll, msg_id, send_msg_2buddy, send_msg_2discuss, send_msg_2group, send_msg_2sess;
+  var all_cookies, change_status, client, cookies, fs, get_buddy_list, get_discuss_list, get_discuss_member, get_friend_uin2, get_group_list, get_group_member, jsons, log, long_poll, msg_id, send_msg_2buddy, send_msg_2discuss, send_msg_2group, send_msg_2sess,gag_someone;
 
   all_cookies = [];
 
@@ -20,6 +20,8 @@
 
   msg_id = 43690001;
 
+
+
   cookies = function(cookie) {
     if (cookie) {
       all_cookies = cookie;
@@ -27,6 +29,8 @@
     }
     return all_cookies;
   };
+
+
 
 
   /*
@@ -308,6 +312,8 @@
     });
   };
 
+
+
   change_status = function(status, auth_opts, callback) {};
 
   module.exports = {
@@ -322,7 +328,7 @@
     send_msg_2group: send_msg_2group,
     get_discuss_list: get_discuss_list,
     get_discuss_member: get_discuss_member,
-    send_msg_2discuss: send_msg_2discuss
+    send_msg_2discuss: send_msg_2discuss,
   };
 
 }).call(this);

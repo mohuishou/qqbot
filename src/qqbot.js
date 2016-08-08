@@ -3,6 +3,7 @@
     var auth = require('./qqauth-qrcode');
     var api = require('./qqapi');
     var Log = require('log');
+    var group=require('./qqgroup');
     var Dispatcher = require('./dispatcher');
     var Services = require('../services');
     var log = new Log('debug');
@@ -37,6 +38,8 @@
             this.api = api;
             this.dispatcher = new Dispatcher(this.config.plugins, this);
             this.started = true;
+            group.set_cookie(cookies);
+            this.group=group;
         }
 
         QQBot.prototype.save_group_member = function (group, info) {
